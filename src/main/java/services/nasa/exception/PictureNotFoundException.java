@@ -5,12 +5,14 @@ import java.io.IOException;
 public class PictureNotFoundException extends IOException {
 
     public PictureNotFoundException(Throwable throwable) {
-        super("Картинка не была найдена",throwable);
+        super("Картинка не была найдена", throwable);
     }
+
     public PictureNotFoundException(String message) {
         super(message);
     }
+
     public PictureNotFoundException(String message, Throwable throwable) {
-        super(message,throwable);
+        super(message, throwable);
     }
 }
