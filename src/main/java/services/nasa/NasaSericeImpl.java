@@ -33,16 +33,13 @@ public class NasaSericeImpl implements NasaService {
         if (pictureIsLoaded(picture))
             return;
 
-        try {
-            InputStream stream = nasaHttpClient.downloadPicture(picture.getHdurl());
-            String fileName = PATH_SAVE + File.separator + getNameFilePicture(picture);
+        String fileName = PATH_SAVE + File.separator + getNameFilePicture(picture);
 
-            try (FileOutputStream fos = new FileOutputStream(fileName);
-                 BufferedOutputStream bos = new BufferedOutputStream(fos)) {
-                byte[] bytes = stream.readAllBytes();
-                bos.write(bytes, 0, bytes.length);
-                stream.close();
-            }
+        try (InputStream inputStream = nasaHttpClient.downloadPicture(picture.getHdurl());
+             FileOutputStream fos = new FileOutputStream(fileName);
+             BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+            byte[] bytes = inputStream.readAllBytes();
+            bos.write(bytes, 0, bytes.length);
         } catch (IOException e) {
             throw new PictureNotFoundException(e.getCause());
         }
