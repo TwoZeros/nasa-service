@@ -1,12 +1,11 @@
 package services.nasa.dto;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class NasaPicture {
@@ -15,9 +14,29 @@ public class NasaPicture {
     private String explanation;
     private String hdurl;
     private String title;
-    private String media_type;
+    private String mediaType;
     private String url;
-    private String service_version;
+    private String serviceVersion;
+
+    public NasaPicture(
+            @JsonProperty("copyright") String copyright,
+            @JsonProperty("date") String date,
+            @JsonProperty("explanation") String explanation,
+            @JsonProperty("hdurl") String hdUrl,
+            @JsonProperty("title") String title,
+            @JsonProperty("media_type") String mediaType,
+            @JsonProperty("url") String url,
+            @JsonProperty("service_version") String serviceVersion) {
+        this.copyright = copyright;
+        this.date = date;
+        this.explanation = explanation;
+        this.hdurl = hdUrl;
+        this.title = title;
+        this.mediaType = mediaType;
+        this.url = url;
+        this.serviceVersion = serviceVersion;
+    }
+
 
     @Override
     public String toString() {

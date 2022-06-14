@@ -12,10 +12,11 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Calendar calendar = new GregorianCalendar(2022, Calendar.JUNE, 11);
+            Calendar calendar = new GregorianCalendar(2022, Calendar.JUNE, 14);
             Date date = calendar.getTime();
             NasaPicture picture = nasaService.getAstronomyPicture(date);
             nasaService.saveToDiskNasaPicture(picture);
+            System.out.println("Картинка сохранена " + nasaService.getNameFilePicture(picture));
         } catch (PictureNotFoundException e) {
             System.out.println(e.getMessage());
         }
